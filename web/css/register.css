@@ -1,0 +1,7 @@
+.registerBox {
+    text-align: center;
+    height: 300px;
+    width: 500px;
+    background: aliceblue;
+    box-shadow: black;
+}
