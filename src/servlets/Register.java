@@ -6,17 +6,16 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-/**
- * @author zhihuan
- */
-@WebServlet(name = "doLogin.do", value = "/doLogin.do")
-public class Login extends HttpServlet {
+@WebServlet(name = "register.do", value = "/register.do")
+public class Register extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
     }
+
 }
