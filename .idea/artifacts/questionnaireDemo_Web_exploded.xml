@@ -10,6 +10,8 @@
         <element id="directory" name="lib">
           <element id="file-copy" path="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" />
           <element id="library" level="project" name="mariadb-java-client-3.0.4" />
+          <element id="library" level="project" name="druid-1.2.9" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar" />
         </element>
       </element>
     </root>

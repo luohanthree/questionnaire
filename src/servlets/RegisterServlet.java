@@ -1,11 +1,13 @@
 package servlets;
 
-import entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import service.DoRegister;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 
 /**
  * @author zhihuan
@@ -19,7 +21,24 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User newUser = new User();
-        
+        response.setContentType("text/html;utf-8");
+        PrintWriter out = response.getWriter();
+        String userName = request.getParameter("userName");
+        String pwd = request.getParameter("pwd");
+        DoRegister doRegister = new DoRegister();
+        try {
+            if (doRegister.register(userName, pwd)) {
+                out.println("注册成功，将在3秒后前往个人主页");
+                response.setHeader("refresh","3;URL=home.jsp");
+            } else {
+                out.println("注册失败，用户名已被占用，请重新注册");
+                response.setHeader("refresh","1;URL=register.jsp");
+            }
+        } catch (SQLException e) {
+            out.println("发生未知错误，请联系管理员");
+            response.setHeader("refresh","5;URL=index.jsp");
+            e.printStackTrace();
+        }
+
     }
 }
