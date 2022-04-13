@@ -1,13 +1,13 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>注册</title>
+    <title>登录</title>
     <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
-    <form action="doRegister.do" method="post" class="basic-grey" name="registerForm" onsubmit="return check(registerForm);">
-        <h1>注册
-            <span>填写以下内容完成注册</span>
+    <form action="doLogin.do" method="post" class="basic-grey" name="loginForm" onsubmit="return check(loginForm);">
+        <h1>登录
+            <span>填写正确信息完成登录</span>
         </h1>
         <label>
             <span>用户名 :</span>
@@ -17,9 +17,13 @@
             <span>密码 :</span>
             <input id="pwd" type="password" name="pwd" placeholder="Secure password" />
         </label>
+<!--        <label>-->
+<!--            <span>下次自动登录 :</span>-->
+<!--            <input id="check" type="radio" name="auto">-->
+<!--        </label>-->
         <label>
             <span>&#10;</span>
-            <input type="submit" class="button" value="注册" />
+            <input type="submit" class="button" value="登录" />
         </label>
     </form>
     <script src="js/isEmpty.js"></script>

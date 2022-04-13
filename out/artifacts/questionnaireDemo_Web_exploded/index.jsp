@@ -14,8 +14,8 @@
     <div class="header">
       <h1 id="indexHead">首页</h1>
       <div class="indexNav">
-        <a href="login.jsp">登录</a>
-        <a href="register.jsp">注册</a>
+        <a href="login.html">登录</a>
+        <a href="register.html">注册</a>
       </div>
     </div>
 </body>
