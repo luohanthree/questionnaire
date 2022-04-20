@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建新的问卷</title>
+</head>
+<body>
+    <div class="formTitle">
+        <form action="createTitle" method="post" class="formTitle" name="thisForm" onsubmit="return check();">
+            <label>
+                <span>请输入问卷标题 :</span>
+                <input type="text" placeholder="请输入问卷标题" name="formName" id="formName">
+            </label>
+            <label>
+                <span>&#10;</span>
+                <input type="submit" value="创建问卷">
+            </label>
+        </form>
+    </div>
+<script>
+    function check() {
+        if (document.thisForm.formName.value == '') {
+            alert("标题不得为空!");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+</body>
+</html>

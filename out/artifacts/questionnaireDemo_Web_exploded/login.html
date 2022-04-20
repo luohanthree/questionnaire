@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
-    <form action="doLogin.do" method="post" class="basic-grey" name="loginForm" onsubmit="return check(loginForm);">
+    <form action="doLogin.do" method="post" class="basic-grey" name="loginForm" onsubmit="return check();">
         <h1>登录
             <span>填写正确信息完成登录</span>
         </h1>
@@ -19,13 +19,24 @@
         </label>
 <!--        <label>-->
 <!--            <span>下次自动登录 :</span>-->
-<!--            <input id="check" type="radio" name="auto">-->
+<!--            <input id="check" type="checkbox" name="auto" value="autoLogin">-->
 <!--        </label>-->
         <label>
-            <span>&#10;</span>
+            <span><br></span>
             <input type="submit" class="button" value="登录" />
         </label>
     </form>
-    <script src="js/isEmpty.js"></script>
+<script>
+    function check() {
+        if (document.loginForm.userName.value === '') {
+            alert("用户名不得为空!");
+            return false;
+        } else if (document.loginForm.pwd.value === '') {
+            alert("密码不得为空!");
+            return false;
+        }
+        return true;
+    }
+</script>
 </body>
 </html>

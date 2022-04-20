@@ -29,14 +29,14 @@ public class Register extends HttpServlet {
         try {
             if (doRegister.register(userName, pwd)) {
                 out.println("注册成功，将在3秒后前往个人主页");
-                response.setHeader("refresh","3;URL=home.jsp");
+                response.setHeader("refresh","3;URL=home.html");
             } else {
                 out.println("注册失败，用户名已被占用，请重新注册");
                 response.setHeader("refresh","1;URL=register.html");
             }
         } catch (SQLException e) {
             out.println("发生未知错误，请联系管理员");
-            response.setHeader("refresh","5;URL=index.jsp");
+            response.setHeader("refresh","5;URL=index.html");
             e.printStackTrace();
         }
 

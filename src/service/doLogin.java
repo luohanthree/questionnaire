@@ -9,7 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class doLogin extends HttpServlet {
+public class doLogin {
+    /**
+     *
+     * @param userName 用户名
+     * @param userPwd 用户密码
+     * @return 返回是否登录成功
+     * @throws SQLException
+     */
     public boolean login(String userName, String userPwd) throws SQLException {
         boolean isLogin = false;
         Connection conn = DBTools.getDatasource().getConnection();

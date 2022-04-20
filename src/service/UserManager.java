@@ -24,7 +24,6 @@ public class UserManager {
             ps = conn.prepareStatement(updateSql);
             ps.setString(1, userName);
             ps.setString(2, pwd);
-
             ps.executeUpdate();
         }
         DBTools.release(ps);

@@ -3,10 +3,15 @@ package servlets;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.jetbrains.annotations.NotNull;
 import service.doLogin;
+import utils.DBTools;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -23,23 +28,59 @@ public class Login extends HttpServlet {
         String auto = "on";
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;utf-8");
-        HttpSession doLogin = request.getSession();
+        HttpSession session = request.getSession();
+        Cookie[] doLogin = request.getCookies();
+//        try {
+//            if (autoLogin(doLogin) && doLogin != null) {
+//                response.sendRedirect("home.html");
+//            }
+//        } catch (SQLException e) {
+//            out.println("自动登录发生错误，请清空浏览器缓存重试!");
+//            e.printStackTrace();
+//        }
         doLogin login = new doLogin();
         String userName = request.getParameter("userName");
         String userPwd = request.getParameter("pwd");
         try {
             if (login.login(userName, userPwd) ) {
                 if (auto.equals(request.getParameter("auto"))) {
-                    doLogin.setAttribute("userName",userName);
-                    doLogin.setAttribute("userPwd",userPwd);
+                    session.setAttribute("userName",userName);
+                    Cookie cookieUserName = new Cookie("userName", userName);
+                    Cookie cookieUserPwd = new Cookie("pwd", userPwd);
+                    cookieUserName.setMaxAge(60*24*60);
+                    cookieUserPwd.setMaxAge(60*60*24);
+                    response.addCookie(cookieUserName);
+                    response.addCookie(cookieUserPwd);
                 }
-                response.setHeader("refresh","0;url=home.jsp");
+                response.sendRedirect("home.html");
             } else {
-                out.println("");
+                out.println("<script>alert( " + "用户名或密码错误" + ")");
+                response.sendRedirect("login.html");
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
+
+    private boolean autoLogin(Cookie @NotNull [] cookies) throws SQLException {
+
+        String userName = cookies[0].getValue();
+        String userPwd = cookies[1].getValue();
+        String dbPwd;
+        boolean isAutoLogin = false;
+        Connection conn = DBTools.getDatasource().getConnection();
+        String sql = "select userName, userPwd from user where userName = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, userName);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            dbPwd = rs.getString("userPwd");
+            if (userPwd.equals(dbPwd)) {
+                isAutoLogin = true;
+            }
+        }
+
+        return isAutoLogin;
+    }
+
 }
