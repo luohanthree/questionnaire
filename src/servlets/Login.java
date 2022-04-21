@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /**
  * @author zhihuan
@@ -26,6 +27,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String auto = "on";
+        Logger logger = Logger.getLogger("loginServlet");
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;utf-8");
         HttpSession session = request.getSession();
@@ -43,6 +45,7 @@ public class Login extends HttpServlet {
         String userPwd = request.getParameter("pwd");
         try {
             if (login.login(userName, userPwd) ) {
+                logger.info("登陆成功");
                 if (auto.equals(request.getParameter("auto"))) {
                     session.setAttribute("userName",userName);
                     Cookie cookieUserName = new Cookie("userName", userName);
@@ -54,6 +57,7 @@ public class Login extends HttpServlet {
                 }
                 response.sendRedirect("home.html");
             } else {
+                logger.info("登陆失败");
                 out.println("<script>alert( " + "用户名或密码错误" + ")");
                 response.sendRedirect("login.html");
             }

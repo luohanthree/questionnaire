@@ -2,21 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
-    <link href="bootstrap/css/bootstrap.min.css">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/page.css" rel="stylesheet">
+    <style>
+        ul {
+            font-size: large;
+        }
+    </style>
 </head>
 <body>
-<div class="page-header myBlur"></div>
+<div class="bg">
+    <div class="container-fluid">
+        <nav class="nav">
+            <div class="row">
+                <div class="col-lg-3">
+                    <a class="navbar-brand" style="color: white"><h3>问卷</h3></a>
+                </div>
+                <br>
+                <ul class="nav nav-pills" style="float: right; margin: 0; top: 10px">
+                    <li><a href="index.html" style="color: white">首页</a></li>
+                    <li><a href="login.html" style="color: white">登录</a></li>
+                    <li><a href="register.html" style="color: white">注册</a></li>
+                </ul>
+            </div>
+        </nav>
+    <div class="contentBig">
+        <div class="content">
+            <h1>欢迎访问</h1>
+        </div>
+    </div>
+    <div class="blank">
 
-
-
-<!--------------script---------------------->
+    </div>
+</div>
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="bootstrap/js/bootstrap.js"></script>
-<script>
-    $(function () {
-        $(".page-header").load("header.html");
-    })
-</script>
 </body>
 </html>
