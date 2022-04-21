@@ -3,48 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>登录</title>
-    <link href="bootstrap-5.1.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/login_register.css" rel="stylesheet">
 </head>
 <body>
 <!--<button class="btn" data-bs-dismiss="modal" data-target="#loginModal">-->
-<div class="container">
-<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
-   <div class="modal-dialog">
-       <div class="modal-content">
-           <div class="modal-header">
-               <div class="modal-title">
-                   <h2 class="text-center">登录</h2>
-               </div>
-               </div>
-           </div>
-           <div class="modal-body">
-               <form action="doLogin.do" class="form" method="post" name="loginForm" onsubmit="return check(loginForm);">
-                   <div class="mb-5">
-                       <label for="username" class="col-form-label">用户名</label>
-                       <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="请输入用户名">
-                   </div>
-                   <br>
-                   <div class="mb-5">
-                       <label for="pwd" class="form-text">密码</label>
-                       <input type="password" class="form-control" id="pwd" placeholder="请输入密码">
-                   </div>
-                   <br>
-                   <div class="mb-5 form-check">
-                       <input type="checkbox" class="form-check-input" id="checkAuto">
-                       <label for="checkAuto" class="form-check">记住我</label>
-                   </div>
-                   <div class="modal-footer">
-                        <a href="register.html" style="float: left">没有用户名?点击注册</a>
-                        <button type="submit" class="btn btn-primary my-2">登录</button>
-                   </div>
-               </form>
-           </div>
-       </div>
-   </div>
-</div>
+<div class="bg">
+    <div class="container-fluid">
+        <div class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">
+                            <h2 class="text-center">登录</h2>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <form action="doLogin.do" class="form" method="post" name="loginForm" onsubmit="return check(loginForm);">
+                            <div class="mb-5">
+                                <label for="username" class="col-form-label">用户名</label>
+                                <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="请输入用户名">
+                            </div>
+                            <br>
+                            <div class="mb-5">
+                                <label for="pwd" class="form-text">密码</label>
+                                <input type="password" class="form-control" id="pwd" placeholder="请输入密码">
+                            </div>
+                            <br>
+                            <div class="mb-5 form-check">
+                                <input type="checkbox" class="form-check-input" id="checkAuto">
+                                <label for="checkAuto" class="form-check">记住我</label>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="register.html" style="float: left">没有用户名?点击注册</a>
+                                <button type="submit" class="btn btn-primary my-2">登录</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="js/jquery-3.6.0.min.js"></script>
-<script src="bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
 <script>
 function check() {
     if (document.loginForm.username.value === '') {

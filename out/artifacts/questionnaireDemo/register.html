@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="css/register.css">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/page.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div id="loginModel" class="modal show" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h2 class="text-center">注册</h2>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <form action="doLogin.do" class="form" method="post" name="loginForm" onsubmit="return check(loginForm);">
+                        <div class="mb-5">
+                            <label for="username" class="col-form-label">用户名</label>
+                            <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="请输入用户名">
+                        </div>
+                        <br>
+                        <div class="my-5">
+                            <label for="pwd" class="form-text">密码</label>
+                            <input type="password" class="form-control" id="pwd" placeholder="请输入密码">
+                        </div>
+                        <br>
+                        <div class="mb-5 form-check">
+                            <input type="checkbox" class="form-check-input" id="checkAuto">
+                            <label for="checkAuto" class="form-check">记住我</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="reset" class="btn">重置</button>
+                            <button type="submit" class="btn btn-primary">注册</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script>
+    function check() {
+        if (document.loginForm.username.value === '') {
+            alert("用户名不得为空!");
+            return false;
+        } else if (document.loginForm.pwd.value === '') {
+            alert("密码不得为空!");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
