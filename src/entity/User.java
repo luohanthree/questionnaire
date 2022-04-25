@@ -1,6 +1,7 @@
 package entity;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
@@ -9,8 +10,9 @@ import java.util.UUID;
  */
 
 @Data
+@RequiredArgsConstructor
 public class User {
-    private String userName;
-    private Integer userId;
-    private String pwd;
+    private final String userName;
+    private final Integer userId;
+    private final String pwd;
 }
