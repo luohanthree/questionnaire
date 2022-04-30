@@ -3,8 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <title>生成表单</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+<!--header-->
+<!--网页内容-->
+<div class="container-fluid">
+    <div class="offcanvas offcanvas-start">
+        <div class="offcanvas-body">
+            <table>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createRadio">创建选择题</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCheckbox">创建多选题</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createText">创建文本题</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+<!--问卷生成-->
+    <div class="row" id="questionnaireContent">
 
+    </div>
+<!--  模态框部分用于生成问卷标题  -->
+    <div class="modal fade" id="createRadio" aria-labelledby="createRadio" aria-hidden="true" style="position: fixed">
+        <div class="modal-dialog"></div>
+        <div class="modal-content"></div>
+        <div class="modal-header">
+            <h5 class="modal-title">创建单选题</h5>
+            <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+        </div>
+        <div class="modal-body">
+            <label for="createRadioContent">题目</label>
+            <input type="text" name="createRadioContent" id="createRadioContent" placeholder="请输入题目">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-primary" onclick="addRadioQues()">完成</button>
+        </div>
+    </div>
+    <div class="modal fade" id="createCheckbox" data-bs-backrop="static" tabindex="-1" aria-labelledby="createCheckbox" aria-hidden="true">
+        <div class="modal-dialog"></div>
+        <div class="modal-content"></div>
+        <div class="modal-header">
+            <h5 class="modal-title">创建多选题</h5>
+            <button class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+        </div>
+        <div class="modal-body">
+            <label for="createCheckboxContent">题目</label>
+            <input name="createCheckboxContent" id="createCheckboxContent" placeholder="请输入题目" type="text">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-primary">完成</button>
+        </div>
+    </div>
+    <div class="modal fade" id="createText" data-bs-backrop="static" tabindex="-1" aria-labelledby="createText" aria-hidden="true">
+        <div class="modal-dialog"></div>
+        <div class="modal-content"></div>
+        <div class="modal-header">
+            <h4 class="modal-title">生成自定义文本题</h4>
+        </div>
+        <div class="modal-body">
+            <label for="createTextContent">题目</label>
+            <input type="text" name="createTextContent" id="createTextContent" placeholder="请输入题目">
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+            <button class="btn btn-primary">完成</button>
+        </div>
+    </div>
+</div>
+<!--js代码-->
+<script src="js/jquery.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+    let i = 0;
+    function addRadioQues () {
+        let parent  = document.getElementById('questionnaireContent');
+        let table = document.createElement('table');
+        let tr = document.createElement('tr');
+        let td = document.createElement('td');
+        table.setAttribute('id', "table" + i);
+        parent.appendChild(table);
+        table.appendChild(tr);
+        tr.appendChild(td);
+        td.innerText = document.getElementById('createRadioContent').value;
+        document.getElementById('createRadioContent').onreset;
+        $('#createRadio').modal('hide');
+        i++;
+    }
+    function addRadio() {
+        let a_radio = document.createElement('input');
+        a_radio.setAttribute('type','radio');
+    }
+</script>
 </body>
 </html>

@@ -34,7 +34,7 @@ public class Login extends HttpServlet {
         Cookie[] doLogin = request.getCookies();
 //        try {
 //            if (autoLogin(doLogin) && doLogin != null) {
-//                response.sendRedirect("home.html");
+//                response.sendRedirect("home.jsp");
 //            }
 //        } catch (SQLException e) {
 //            out.println("自动登录发生错误，请清空浏览器缓存重试!");
@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
                     response.addCookie(cookieUserName);
                     response.addCookie(cookieUserPwd);
                 }
-                response.sendRedirect("home.html");
+                response.sendRedirect("home.jsp");
             } else {
                 logger.info("登陆失败");
                 out.println("<script>alert( " + "用户名或密码错误" + ")");
