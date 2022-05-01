@@ -1,63 +1,98 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>登录</title>
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/login_register.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>登录</title>
+  <link href="layui/css/layui.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: url("./img/bg.jpg");
+    }
+    .form_m {
+      position: absolute;
+      top: 100px;
+      left: 250px;
+      margin: auto;
+      background: white;
+      width: 800px;
+      opacity:85%;
+      border-radius: 10px;
+      height: 400px;
+      padding: 20px;
+    }
+    a {
+      text-decoration: none;
+    }
+    .title {
+      text-align: center;
+      padding:20px;
+    }
+  </style>
 </head>
 <body>
-<!--<button class="btn" data-bs-dismiss="modal" data-target="#loginModal">-->
-<div class="bg">
-    <div class="container-fluid">
-    <div class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="modal-title">
-                        <h2 class="text-center">登录</h2>
-                    </div>
-                </div>
-                <div class="modal-body">
-                    <form action="doLogin.do" class="form" method="post" name="loginForm" onsubmit="return check(loginForm);">
-                        <div class="mb-5">
-                            <label for="username" class="col-form-label">用户名</label>
-                            <input type="text" id="username" class="form-control" aria-describedby="username" placeholder="请输入用户名">
-                        </div>
-                        <br>
-                        <div class="mb-5">
-                            <label for="pwd" class="form-text">密码</label>
-                            <input type="password" class="form-control" id="pwd" placeholder="请输入密码">
-                        </div>
-                        <br>
-                        <div class="mb-5 form-check">
-                            <input type="checkbox" class="form-check-input" id="checkAuto">
-                            <label for="checkAuto" class="form-check">记住我</label>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="register.html" style="float: left">没有用户名?点击注册</a>
-                            <button type="submit" class="btn btn-primary my-2">登录</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
+<div class="my_nav" id="index">
+  <ul class="layui-nav" style="opacity: 50%">
+    <li class="layui-nav-item"><a href="index.html">首页</a></li>
+    <li class="layui-nav-item"><a href="#">登录</a></li>
+    <li class="layui-nav-item"><a href="register.html">注册</a></li>
+  </ul>
 </div>
-<script src="js/jquery-3.6.0.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
+<div class="layui-row">
+  <div class="form_m">
+    <form class="layui-form formContent" id="registerForm" method="post" action="http://localhost:8080/questionnaire/doRegister.do" onsubmit="return check();">
+      <div class="title">
+        <h2>注册</h2>
+        <hr>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label" for="username">用户名</label>
+        <div class="layui-input-block">
+          <input type="text" class="form-control" name="username" id="username" placeholder="用户名" autocomplete="off">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label" for="password">密码</label>
+        <div class="layui-input-block">
+          <input class="form-control" type="password" name="password" id="password" placeholder="请输入密码" autocomplete="off">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">记住我</label>
+        <div class="layui-input-block">
+          <input type="checkbox" title="记住我" value="autoLogin">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="btn btn-secondary" type="reset">重置</button>
+          <button class="btn btn-primary" type="submit">登录</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="layui/layui.js"></script>
 <script>
-function check() {
-    if (document.loginForm.username.value === '') {
-        alert("用户名不得为空!");
-        return false;
-    } else if (document.loginForm.pwd.value === '') {
-        alert("密码不得为空!");
-        return false;
+  layui.use(['element','form'],function () {
+    const element = layui.element;
+    const form = layui.form;
+
+  })
+  function check() {
+    const form = document.getElementById('registerForm');
+    if (form.username.value === '') {
+      alert("请输入用户名")
+      return false;
+    } else if (form.password === '') {
+      alert("请输入密码")
+      return false;
+    } else {
+      return true;
     }
-    return true;
-}
+  }
 </script>
+
 </body>
 </html>
