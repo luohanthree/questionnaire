@@ -4,11 +4,11 @@ let x = 0 //用于选择不同的函数
 let parent = document.getElementById('formContent');
 
 let form = {
-    type : "",
-    options : [],
-    question_name : ""
+    type: "",
+    options: [],
+    question_name: ""
 }
-let forms = [form];
+let forms = [form]
 
 function changeFunction(y) {
     x = y;
@@ -95,24 +95,15 @@ function addText() {
 }
 
 function send_to_backend() {
-    let xml_http;
-    if (window.XMLHttpRequest) {
-        xml_http=new XMLHttpRequest();
-    } else {
-        xml_http=new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    let jsons = [];
-    for (let t = 0; t < i; t++) {
-        jsons[t] = JSON.stringify(forms[t]);
-    }
+    let jsons = JSON.stringify(forms);
+    console.info(jsons);
     $.ajax({
-        url : "http://localhost:8080/questionaire/doCreate.do",
-        type : "post",
-        data : {
-            jsons
+        url: "doCreate.do",
+        type: 'post',
+        data: {
+            jsonStr: jsons,
         },
-        dateType : "string",
-        success : function (data) {
+        success: function (data) {
             alert("创建成功");
         },
         error: function (errorMsg) {

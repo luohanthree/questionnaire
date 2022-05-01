@@ -30,7 +30,7 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="#">查看全部问卷</a>
+                    <a class="" href="#">选择题</a>
                     <dl class="layui-nav-child">
                         <dd><a href="#" data-bs-toggle="modal" data-bs-target="#createQues" onclick="changeFunction(1)">单选</a></dd>
                         <dd><a href="#" data-bs-toggle="modal" data-bs-target="#createQues" onclick="changeFunction(2)">多选</a></dd>
@@ -144,7 +144,7 @@
 
 <div class="layui-footer">
     <label for="submit">提交</label>
-    <input id="submit" type="submit" class="btn btn-primary" onclick="send_to_backend()">
+    <input class="btn btn-primary" id="submit" onclick="send_to_backend()" type="button">
 </div>
 </div>
 <script src="./js/jquery.min.js"></script>

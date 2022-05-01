@@ -67,7 +67,7 @@
             <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button class="btn btn-secondary" type="reset">重置</button>
-                    <button class="btn btn-primary" type="submit">登录</button>
+                    <button class="btn btn-primary" type="submit">注册</button>
                 </div>
             </div>
         </form>
@@ -85,11 +85,11 @@
         if (form.username.value === '') {
             alert("请输入用户名")
             return false;
-        } else if (form.password === '') {
+        } else if (form.password.value === '') {
             alert("请输入密码")
             return false;
-        } else if (form.password !== form.password_again) {
-            alert("两次输入的密码一致")
+        } else if (form.password.value !== form.password_again.value) {
+            alert("两次输入的密码不一致")
             return false;
         } else {
             return true;

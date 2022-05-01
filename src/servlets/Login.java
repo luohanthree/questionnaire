@@ -1,8 +1,8 @@
 package servlets;
 
-import jakarta.servlet.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
 import org.jetbrains.annotations.NotNull;
 import service.doLogin;
 import utils.DBTools;
@@ -41,23 +41,22 @@ public class Login extends HttpServlet {
 //            e.printStackTrace();
 //        }
         doLogin login = new doLogin();
-        String userName = request.getParameter("userName");
-        String userPwd = request.getParameter("pwd");
+        String userName = request.getParameter("username");
+        String userPwd = request.getParameter("password");
         try {
-            if (login.login(userName, userPwd) ) {
+            if (login.login(userName, userPwd)) {
                 logger.info("登陆成功");
                 if (auto.equals(request.getParameter("auto"))) {
-                    session.setAttribute("userName",userName);
+                    session.setAttribute("userName", userName);
                     Cookie cookieUserName = new Cookie("userName", userName);
                     Cookie cookieUserPwd = new Cookie("pwd", userPwd);
-                    cookieUserName.setMaxAge(60*24*60);
-                    cookieUserPwd.setMaxAge(60*60*24);
+                    cookieUserName.setMaxAge(60 * 24 * 60);
+                    cookieUserPwd.setMaxAge(60 * 60 * 24);
                     response.addCookie(cookieUserName);
                     response.addCookie(cookieUserPwd);
                 }
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("home.html");
             } else {
-                logger.info("登陆失败");
                 out.println("<script>alert( " + "用户名或密码错误" + ")");
                 response.sendRedirect("login.html");
             }
