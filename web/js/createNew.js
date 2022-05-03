@@ -104,6 +104,7 @@ function addOptions(type) {
 
 //发送数据给后端
 function send_to_backend() {
+    let formName = document.getElementById('formName').value;
     let z = 0;
     console.log(options)
     let questionnaire = [];
@@ -131,6 +132,7 @@ function send_to_backend() {
         type: 'post',
         data: {
             jsonStr: questionnaire_json,
+            formName : formName
         },
         success: function (data) {
             alert("创建成功");

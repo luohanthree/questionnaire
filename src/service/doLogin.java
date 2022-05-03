@@ -18,7 +18,7 @@ public class doLogin {
      * @return 返回是否登录成功
      * @throws SQLException
      */
-    public int  login(String userName, String userPwd) throws SQLException {
+    public int login(String userName, String userPwd) throws SQLException {
         int id = -1;
         Connection conn = DBTools.getDatasource().getConnection();
         String selectSql = "select userPwd, userId from user where userName = ?";

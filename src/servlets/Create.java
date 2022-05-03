@@ -23,19 +23,28 @@ public class Create extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();
         String userID = null;
+        /*获取用户的Id*/
         for (Cookie cookie : cookies) {
             if (cookie.getName().equals("id")) {
                 userID = cookie.getValue();
             }
         }
         String questionnaire = request.getParameter("jsonStr");
-        JSONArray jsonArray = JSONArray.parseArray(questionnaire);
+        String questionnaireName = request.getParameter("forName");
+        JSONArray questions = JSONArray.parseArray(questionnaire);
         assert userID != null;
-        Questionnaires questionnaires = new Questionnaires(Integer.parseInt(userID));
+        Questionnaires questionnaires;
         try {
-            questionnaires.createNew(jsonArray);
+            questionnaires = new Questionnaires(Integer.parseInt(userID));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        try {
+            questionnaires.createNew(questions, questionnaireName);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
+
 }

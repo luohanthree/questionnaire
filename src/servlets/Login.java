@@ -31,15 +31,6 @@ public class Login extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;utf-8");
         HttpSession session = request.getSession();
-        Cookie[] doLogin = request.getCookies();
-//        try {
-//            if (autoLogin(doLogin) && doLogin != null) {
-//                response.sendRedirect("home.jsp");
-//            }
-//        } catch (SQLException e) {
-//            out.println("自动登录发生错误，请清空浏览器缓存重试!");
-//            e.printStackTrace();
-//        }
         doLogin login = new doLogin();
         String userName = request.getParameter("username");
         String userPwd = request.getParameter("password");
