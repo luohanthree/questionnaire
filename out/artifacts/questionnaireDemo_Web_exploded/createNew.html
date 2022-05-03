@@ -128,14 +128,14 @@
             </div>
             <div class="modal-body">
                 <form class="form" id="createCheckBoxForm">
-                    <label for="checkBox">请输入选项内容</label>
+                    <label for="checkbox">请输入选项内容</label>
                     <input type="text" class="form-control" id="checkbox">
                     <input type="reset" style="display:none;" />
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                <button class="btn btn-primary"  data-bs-dismiss="modal" type="reset" onclick="addCheckBox()">创建</button>
+                <button class="btn btn-primary"  data-bs-dismiss="modal" type="reset" value="创建" onclick="addCheckBox()">创建</button>
             </div>
         </div>
     </div>
@@ -144,7 +144,7 @@
 
 <div class="layui-footer">
     <label for="submit">提交</label>
-    <input id="submit" type="button" class="btn btn-primary" onclick="send_to_backend()">
+    <input class="btn btn-primary" id="submit" onclick="send_to_backend()" type="button">
 </div>
 </div>
 <script src="./js/jquery.min.js"></script>

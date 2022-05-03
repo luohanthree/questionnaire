@@ -43,8 +43,10 @@ public class Login extends HttpServlet {
         doLogin login = new doLogin();
         String userName = request.getParameter("username");
         String userPwd = request.getParameter("password");
+        int id;
         try {
-            if (login.login(userName, userPwd)) {
+            id = login.login(userName, userPwd);
+            if (id != -1) {
                 logger.info("登陆成功");
                 if (auto.equals(request.getParameter("auto"))) {
                     session.setAttribute("userName", userName);
@@ -55,6 +57,10 @@ public class Login extends HttpServlet {
                     response.addCookie(cookieUserName);
                     response.addCookie(cookieUserPwd);
                 }
+                Cookie cookieId = new Cookie("id", String.valueOf(id));
+                cookieId.setPath("/");
+                cookieId.setMaxAge(60*60*24);
+                response.addCookie(cookieId);
                 response.sendRedirect("home.html");
             } else {
                 out.println("<script>alert( " + "用户名或密码错误" + ")");
