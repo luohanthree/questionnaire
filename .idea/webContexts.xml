@@ -5,7 +5,9 @@
       <map>
         <entry key="file://$PROJECT_DIR$/web/createNew.html" value="file://$PROJECT_DIR$/web" />
         <entry key="file://$PROJECT_DIR$/web/home.html" value="file://$PROJECT_DIR$/web" />
+        <entry key="file://$PROJECT_DIR$/web/home.jsp" value="file://$PROJECT_DIR$/web" />
         <entry key="file://$PROJECT_DIR$/web/index.html" value="file://$PROJECT_DIR$/web" />
+        <entry key="file://$PROJECT_DIR$/web/model.jsp" value="file://$PROJECT_DIR$/web" />
       </map>
     </option>
   </component>

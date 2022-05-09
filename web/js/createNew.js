@@ -108,11 +108,6 @@ function send_to_backend() {
     let z = 0;
     console.log(options)
     let questionnaire = [];
-    // let question = {
-    //     question_name : "",
-    //     types : "",
-    //     options : []
-    // }
     for (let temp = 0;temp < i; temp++) {
         let question = {};
         question.options = [];
@@ -127,18 +122,24 @@ function send_to_backend() {
     }
     let questionnaire_json = JSON.stringify(questionnaire);
     console.info(questionnaire_json);
-    $.ajax({
-        url: "doCreate.do",
-        type: 'post',
-        data: {
-            jsonStr: questionnaire_json,
-            formName : formName
-        },
-        success: function (data) {
-            alert("创建成功");
-        },
-        error: function (errorMsg) {
-            alert("创建失败")
-        }
-    })
+    if (formName === '') {
+        alert("问卷标题不得为空");
+    } else {
+        $.ajax({
+            url: "doCreate.do",
+            type: 'post',
+            data: {
+                jsonStr: questionnaire_json,
+                formName : formName
+            },
+            dataType:'json',
+            success: function (data) {
+                alert("创建成功,点击全部问卷查看!");
+                window.location.reload();
+            },
+            error: function (errorMsg) {
+                alert("创建失败")
+            }
+        })
+    }
 }

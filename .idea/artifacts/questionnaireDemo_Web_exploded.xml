@@ -8,11 +8,15 @@
           <element id="module-output" name="questionnaireDemo" />
         </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" />
-          <element id="library" level="project" name="mariadb-java-client-3.0.4" />
-          <element id="library" level="project" name="druid-1.2.9" />
-          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar" />
           <element id="library" level="project" name="fastjson-1.1.16" />
+          <element id="dir-copy" path="$PROJECT_DIR$/../../../Path/tomcat/apache-tomcat-10.0.16/lib" />
+          <element id="library" level="project" name="druid-1.2.9" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../Path/jdbc driver/mariadb-java-client-3.0.4.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../Path/jdbc driver/druid-1.2.9.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar" />
+          <element id="file-copy" path="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.20/lombok-1.18.20.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../../Path/forJava/jakarta.servlet.jsp.jstl-2.0.0.jar" />
+          <element id="library" level="project" name="jakarta.servlet.jsp.jstl-api-2.0.0" />
         </element>
       </element>
     </root>

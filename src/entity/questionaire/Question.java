@@ -17,4 +17,8 @@ public class Question {
     public void addOption(Option option) {
         options.add(option.getOption());
     }
+
+    public List<String> getGetOptions() {
+        return options;
+    }
 }

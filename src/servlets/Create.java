@@ -1,13 +1,13 @@
 package servlets;
 
 import com.alibaba.fastjson.JSONArray;
+import dao.QuestionnaireDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import service.Questionnaires;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,17 +30,13 @@ public class Create extends HttpServlet {
             }
         }
         String questionnaire = request.getParameter("jsonStr");
-        String questionnaireName = request.getParameter("forName");
+        String questionnaireName = request.getParameter("formName");
+        if (questionnaireName.equals("")) response.sendError(400);
         JSONArray questions = JSONArray.parseArray(questionnaire);
         assert userID != null;
-        Questionnaires questionnaires;
+        QuestionnaireDao questionnaireDao = new QuestionnaireDao(Integer.parseInt(userID));
         try {
-            questionnaires = new Questionnaires(Integer.parseInt(userID));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            questionnaires.createNew(questions, questionnaireName);
+            questionnaireDao.createNew(questions, questionnaireName);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

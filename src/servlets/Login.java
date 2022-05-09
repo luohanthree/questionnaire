@@ -3,6 +3,7 @@ package servlets;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 import service.doLogin;
 import utils.DBTools;
@@ -27,14 +28,14 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String auto = "on";
-        Logger logger = Logger.getLogger("loginServlet");
+        Logger logger = Logger.getLogger("servlets.Login");
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;utf-8");
         HttpSession session = request.getSession();
         doLogin login = new doLogin();
         String userName = request.getParameter("username");
         String userPwd = request.getParameter("password");
-        int id;
+        int id = -1;
         try {
             id = login.login(userName, userPwd);
             if (id != -1) {
@@ -52,9 +53,9 @@ public class Login extends HttpServlet {
                 cookieId.setPath("/");
                 cookieId.setMaxAge(60*60*24);
                 response.addCookie(cookieId);
-                response.sendRedirect("home.html");
+                request.getRequestDispatcher("/getQues.do").forward(request, response);
             } else {
-                out.println("<script>alert( " + "用户名或密码错误" + ")");
+                response.getWriter().write("登录失败,请检查用户名或密码!");
                 response.sendRedirect("login.html");
             }
         } catch (SQLException e) {
