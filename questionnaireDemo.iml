@@ -19,7 +19,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="servlet-api" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -29,7 +28,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="mariadb-java-client-3.0.4" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -39,6 +37,11 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="druid-1.2.9" level="project" />
+    <orderEntry type="library" name="fastjson-1.1.16" level="project" />
+    <orderEntry type="library" name="mariadb-java-client-3.0.4" level="project" />
+    <orderEntry type="library" name="druid-1.2.9" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="jakarta.servlet.jsp.jstl-2.0.0" level="project" />
+    <orderEntry type="library" name="jakarta.servlet.jsp.jstl-api-2.0.0" level="project" />
   </component>
 </module>

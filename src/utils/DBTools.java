@@ -16,7 +16,6 @@ import java.util.Properties;
 public class DBTools {
 
 
-
     public static DataSource getDatasource() {
         DataSource dataSource = null;
         Properties properties = new Properties();
@@ -44,4 +43,5 @@ public class DBTools {
             statement.close();
         }
     }
+
 }

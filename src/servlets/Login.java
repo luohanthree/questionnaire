@@ -3,6 +3,7 @@ package servlets;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
+import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 import service.doLogin;
 import utils.DBTools;
@@ -27,24 +28,17 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String auto = "on";
-        Logger logger = Logger.getLogger("loginServlet");
+        Logger logger = Logger.getLogger("servlets.Login");
         PrintWriter out = response.getWriter();
         response.setContentType("text/html;utf-8");
         HttpSession session = request.getSession();
-        Cookie[] doLogin = request.getCookies();
-//        try {
-//            if (autoLogin(doLogin) && doLogin != null) {
-//                response.sendRedirect("home.jsp");
-//            }
-//        } catch (SQLException e) {
-//            out.println("自动登录发生错误，请清空浏览器缓存重试!");
-//            e.printStackTrace();
-//        }
         doLogin login = new doLogin();
         String userName = request.getParameter("username");
         String userPwd = request.getParameter("password");
+        int id = -1;
         try {
-            if (login.login(userName, userPwd)) {
+            id = login.login(userName, userPwd);
+            if (id != -1) {
                 logger.info("登陆成功");
                 if (auto.equals(request.getParameter("auto"))) {
                     session.setAttribute("userName", userName);
@@ -55,9 +49,13 @@ public class Login extends HttpServlet {
                     response.addCookie(cookieUserName);
                     response.addCookie(cookieUserPwd);
                 }
-                response.sendRedirect("home.html");
+                Cookie cookieId = new Cookie("id", String.valueOf(id));
+                cookieId.setPath("/");
+                cookieId.setMaxAge(60*60*24);
+                response.addCookie(cookieId);
+                request.getRequestDispatcher("/getQues.do").forward(request, response);
             } else {
-                out.println("<script>alert( " + "用户名或密码错误" + ")");
+                response.getWriter().write("登录失败,请检查用户名或密码!");
                 response.sendRedirect("login.html");
             }
         } catch (SQLException e) {

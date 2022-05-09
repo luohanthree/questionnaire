@@ -29,6 +29,9 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                <li class="layui-nav-item">
+                    <a href="home.jsp">全部问卷</a>
+                </li>
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="#">选择题</a>
                     <dl class="layui-nav-child">
@@ -112,7 +115,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                <button class="btn btn-primary"  data-bs-dismiss="modal" type="reset" onclick="addRadio()">创建</button>
+                <button class="btn btn-primary"  value="创建" data-bs-dismiss="modal" type="reset" onclick="addRadio()">创建</button>
             </div>
         </div>
     </div>
@@ -128,14 +131,14 @@
             </div>
             <div class="modal-body">
                 <form class="form" id="createCheckBoxForm">
-                    <label for="checkBox">请输入选项内容</label>
+                    <label for="checkbox">请输入选项内容</label>
                     <input type="text" class="form-control" id="checkbox">
                     <input type="reset" style="display:none;" />
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
-                <button class="btn btn-primary"  data-bs-dismiss="modal" type="reset" onclick="addCheckBox()">创建</button>
+                <button class="btn btn-primary"  data-bs-dismiss="modal" type="reset" value="创建" onclick="addCheckBox()">创建</button>
             </div>
         </div>
     </div>
