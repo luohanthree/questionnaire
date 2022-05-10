@@ -1,6 +1,9 @@
 package servlets;
 
 import dao.QuestionnaireDao;
+import dao.SamplesDao;
+import entity.Results;
+import entity.questionaire.Question;
 import entity.questionaire.Questionnaire;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
@@ -11,15 +14,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Logger;
 
 @WebServlet(name = "getQues", value = "/getQues.do")
-public class SendQuestionnaire extends HttpServlet {
-    Logger logger = Logger.getLogger("servlets.SendQuestionnaire");
+public class getAllQuestionnaires extends HttpServlet {
+    Logger logger = Logger.getLogger("servlets.getAllQuestionnaires");
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
@@ -37,14 +38,21 @@ public class SendQuestionnaire extends HttpServlet {
                 id = Integer.parseInt(cookie.getValue());
             }
         }
+        Map<UUID, Results> results = new HashMap<>();
         try {
             QuestionnaireDao questionnaireDao = new QuestionnaireDao(id);
             List<Questionnaire> questionnaireList = new ArrayList<>();
             if (formId == null) {
                 questionnaireList = questionnaireDao.findAll(id);
+                for (Questionnaire questionnaire : questionnaireList){
+                    UUID eachFormId = questionnaire.getFormId();
+                    SamplesDao samplesDao = new SamplesDao();
+                    results.put(eachFormId, samplesDao.getData(eachFormId));
+                }
             } else {
                 questionnaireList.add(questionnaireDao.findOne(formId));
             }
+            request.setAttribute("results",results);
             request.setAttribute("questionnaires", questionnaireList);
             request.setAttribute("url",url);
             request.getRequestDispatcher("home.jsp").forward(request, response);

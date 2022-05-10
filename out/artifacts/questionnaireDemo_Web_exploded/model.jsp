@@ -12,33 +12,47 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="questionnaire" type="entity.questionaire.Questionnaire" scope="request"/>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
   <title>${questionnaire.formName}</title>
-  <link href="./css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 <% request.setAttribute("questions",questionnaire.getQuestions());%>
-<form action="dataAnA" method="post">
-<%--  <jsp:useBean id="questions" type="entity.questionaire.Question" scope="request"/>--%>
-<%--  <jsp:useBean id="questions" type="java.util.List" />--%>
-  <c:forEach items="${questions}" var="question" varStatus="i">
-    <label class="form-label" for="${question.question_name}">${i.count}.${question.question_name}</label>
-    <ul class="list-group">
-    <c:forEach items="${question.getOptions()}" var="option" varStatus="t">
-      <li class="list-group-item">
-        <label class="form-label" for="${question.question_name}.${option}">${t.count}.${option}</label>
-        <input type="${question.type}" value="${option}" id="${question.question_name}.${option}">
-      </li>
-    </c:forEach>
-    </ul>
-  </c:forEach>
-  <label>
-    <input type="radio" name="formId" value="${questionnaire.formId}" checked disabled>
-  </label>
-  <label class="form-label" for="${questionnaire.formId}"></label>
-  <input type="button" class="btn btn-primary" value="提交" id="${questionnaire.formId}">
-</form>
+<div class="container">
+  <div class="mb-4">
+    <form action="answer" method="post">
+      <h4 style="text-align: center">${questionnaire.formName}</h4>
+      <c:forEach items="${questions}" var="question" varStatus="i">
+        <h5><label class="form-label" for="${question.question_name}">${i.count}.${question.question_name}</label></h5>
+        <div class="row">
+          <ul class="list-group">
+            <c:forEach items="${question.getOptions()}" var="option" varStatus="t">
+              <li class="list-group-item">
+                <c:if test="${question.type eq 'text'}">
+                  <textarea class="form-control" rows="3" name="${question.question_name}" id="${question.question_name}.${option}"></textarea>
+                </c:if>
+                <c:if test="${!(question.type eq 'text')}">
+                  <label class="form-label" for="${question.question_name}.${option}">${t.count}.${option}</label>
+                  <input type="${question.type}" value="${option}" name="${question.question_name}" id="${question.question_name}.${option}" />
+                </c:if>
+              </li>
+            </c:forEach>
+          </ul>
+        </div>
+      </c:forEach>
+      <br>
+      <footer class="footer">
+        <label class="form-label" for="${questionnaire.formId}"></label>
+        <input type="reset" class="btn btn-secondary" value="重置" />
+        <input type="submit" class="btn btn-primary" name="formId" value="提交" id="${questionnaire.formId}">
+      </footer>
+    </form>
+  </div>
+</div>
+<script src="./js/jquery.js"></script>
+<script src="./js/bootstrap.min.js"></script>
 </body>
 </html>

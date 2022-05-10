@@ -3,7 +3,6 @@ package servlets;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 import service.doLogin;
 import utils.DBTools;

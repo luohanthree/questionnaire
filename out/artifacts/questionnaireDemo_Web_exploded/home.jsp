@@ -56,19 +56,21 @@
                     <th scope="col">问卷Id</th>
                     <th scope="col">问卷名称</th>
                     <th scope="col">填写人数</th>
+                    <th scope="col">查看问卷</th>
                     <th scope="col">处理</th>
                 </tr>
                 </thead>
                 <tbody id="tableBody">
                 <jsp:useBean id="questionnaires" scope="request" type="java.util.List"/>
-                <jsp:useBean id="url" scope="request" type="java.lang.String" />
-                <c:forEach items="${questionnaires}" begin="0" end="${questionnaires.size()}" var="questionnaire" varStatus="i">
+                <jsp:useBean id="results" scope="request" type="java.util.Map"/>
+                <c:forEach items="${questionnaires}" var="questionnaire" varStatus="i">
                     <tr>
                         <td>${i.count}</td>
                         <td>${questionnaire.getFormId()}</td>
                         <td>${questionnaire.getFormName()}</td>
-                        <td></td>
-                        <td><a href="${url}${questionnaire.getFormId()}">查看详情</a>&nbsp;&nbsp;<a href="">删除</a></td>
+                        <td>${results.get(questionnaire.getFormId()).nums}</td>
+                        <td><a href="http://localhost:8080/questionnaire/questionnaires/${questionnaire.getFormId()}">查看详情</a>&nbsp;</td>
+                        <td><a href="http://localhost:8080/questionnaire/sendQues/${questionnaire.getFormId()}">派发</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

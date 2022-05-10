@@ -40,7 +40,7 @@ function createQues() {
         types.push("checkbox");
     } else if (x === 3) {
         new_td.innerHTML = "<button class='btn btn-primary' type='button' data-bs-toggle='modal' onclick='addText()'" +" id=btn" + i + ">创建回答框</button>";
-        types.push("textarea");
+        types.push("text");
     }
     document.getElementById('question').value= '';
     t=1;
